@@ -1,0 +1,6 @@
+get->Users[get all users from table]
+get->UserByID[get users by id from user table]
+delete->>removeuser[remove User from users table]
+post->>insertuser[insert new user into users table]
+put->>updateuser[update existing user in users table]
+
