@@ -4,3 +4,5 @@ delete->>removeuser[remove User from users table]
 post->>insertuser[insert new user into users table]
 put->>updateuser[update existing user in users table]
 
+get->products[get all products from products table]
+get->productsByID[get all products from products table]
