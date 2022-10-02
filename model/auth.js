@@ -1,142 +1,62 @@
-const sql = require("./db");
+const dal = require("../model/authenticationDal");
 
-// Customer
-exports.customer_login = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let command = `SELECT email FROM customers WHERE email="${data.email}" AND password="${data.password}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      let allUsersStr = JSON.stringify(rows);
-      var allUsers = JSON.parse(allUsersStr);
-      if (allUsers.length > 0) {
-        resolve(`Welcome ${data.email}`);
-      } else {
-        resolve("Invalid User!");
-      }
-    });
-  });
+// Customers
+exports.customer_login = async (req, res) => {
+  let data = [];
+  console.log("inside cust login function");
+  data = await dal.customer_login(req);
+  if (data.error) {
+    res.render("../views/errorpage", data);
+  } else {
+    res.render("../views/home", data);
+  }
 };
 
-exports.customer_register = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO customers(firstname,lastname,email,contact_no,password, location, created_at, modified_at) values("${data.firstname}","${data.lastname}","${data.email}","${data.contact_no}","${data.password}","${data.location}","${timeStamp}","${timeStamp}");`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log(err);
-        resolve("Failed, Enter Valid Details!");
-      } else {
-        resolve("Registered!");
-      }
-    });
-  });
+exports.loginPage = async (req, res) => {
+  res.render("../views/customerlogin");
+};
+
+exports.customer_register = async (req, res) => {
+  let data = [];
+  data = await dal.customer_register(req);
+  res.send(data);
 };
 
 // Seller
-exports.seller_login = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let command = `SELECT email FROM seller WHERE email="${data.email}" AND password="${data.password}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      let allUsersStr = JSON.stringify(rows);
-      var allUsers = JSON.parse(allUsersStr);
-      if (allUsers.length > 0) {
-        resolve(`Welcome ${data.email}`);
-      } else {
-        resolve("Invalid User!");
-      }
-    });
-  });
+exports.seller_login = async (req, res) => {
+  let data = [];
+  data = await dal.seller_login(req);
+  res.send(data);
 };
 
-exports.seller_register = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO seller(name,location,email, contact_no, password, created_at, modified_at) values("${data.name}","${data.location}","${data.email}","${data.contact_no}","${data.password}","${timeStamp}","${timeStamp}");`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        resolve(err);
-      } else {
-        resolve("Seller Registered!");
-      }
-    });
-  });
+exports.seller_register = async (req, res) => {
+  let data = [];
+  data = await dal.seller_register(req);
+  res.send(data);
 };
 
 // Staff
-exports.staff_login = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let command = `SELECT email FROM staff WHERE email="${data.email}" AND password="${data.password}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      let allUsersStr = JSON.stringify(rows);
-      var allUsers = JSON.parse(allUsersStr);
-      if (allUsers.length > 0) {
-        resolve(`Welcome ${data.email}`);
-      } else {
-        resolve("Invalid User!");
-      }
-    });
-  });
+exports.staff_login = async (req, res) => {
+  let data = [];
+  data = await dal.staff_login(req);
+  res.send(data);
 };
 
-exports.staff_register = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO seller(firstname,lastname,email, contact_no,empid,password,created_at,modified_at) values("${data.firstname}","${data.lastname}","${data.email}","${data.contact_no}","${data.empid}","${data.password}","${timeStamp}","${timeStamp}");`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        resolve("Failed, Enter Valid Details!");
-      } else {
-        resolve("Registered!");
-      }
-    });
-  });
+exports.staff_register = async (req, res) => {
+  let data = [];
+  data = await dal.staff_register(req);
+  res.send(data);
 };
 
-// Staff
-exports.vendor_login = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let command = `SELECT email FROM vendor WHERE email="${data.email}" AND password="${data.password}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      let allUsersStr = JSON.stringify(rows);
-      var allUsers = JSON.parse(allUsersStr);
-      if (allUsers.length > 0) {
-        resolve(`Welcome ${data.email}`);
-      } else {
-        resolve("Invalid User!");
-      }
-    });
-  });
+// vendors
+exports.vendors_login = async (req, res) => {
+  let data = [];
+  data = await dal.vendors_login(req);
+  res.send(data);
 };
 
-exports.vendor_register = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO vendor(name,email,password, contact_no,modified_at,created_at) values("${data.name}","${data.email}","${data.password}","${data.contact_no}","${timeStamp}","${timeStamp}");`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        resolve("Failed, Enter Valid Details!");
-      } else {
-        resolve("Registered!");
-      }
-    });
-  });
+exports.vendors_register = async (req, res) => {
+  let data = [];
+  data = await dal.vendors_register(req);
+  res.send(data);
 };

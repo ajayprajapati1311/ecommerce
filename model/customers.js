@@ -1,26 +1,32 @@
 const sql = require("./db");
 
-exports.getAllCustomers = function () {
+exports.getAllCustomers = function (req) {
   return new Promise((resolve) => {
     let command = "SELECT * FROM customers";
     sql.query(command, (err, rows, field) => {
       if (err) {
-        console.log(err);
+        resolve({ error: "Some error occurred!" });
       } else {
-        resolve(rows);
+        resolve({ customers: rows });
       }
     });
   });
 };
 
-exports.getById = function (id) {
+exports.getById = function (req) {
   return new Promise((resolve) => {
+    let id = req.params.id;
+    let user = req.user;
     let command = `SELECT * FROM customers WHERE id="${id}"`;
     sql.query(command, (err, rows, fields) => {
       if (err) {
         console.log("Error:", err);
       }
-      resolve(rows);
+      let dbUser = rows[0];
+      if (dbUser.email !== user.email) {
+        resolve("Unauthorized User");
+      }
+      resolve(dbUser);
     });
   });
 };

@@ -126,16 +126,16 @@ module.exports = function (app) {
     .put(deliveryController.update);
 
   // Dashboard APIs
-  app.route("/api/dashboard/order-list").get(dashboardController.getOrderList); // get orders list
+  app.route("/api/dashboard/order-list").get(dashboardController.getOrderList); 
   app
     .route("/api/dashboard/available-products")
-    .get(dashboardController.getAvailableProducts); // get all available products
+    .get(dashboardController.getAvailableProducts); 
   app
     .route("/api/dashboard/unavailable-products")
-    .get(dashboardController.getZeroProductAvailable); // get unavailable products
+    .get(dashboardController.getZeroProductAvailable);
   app
     .route("/api/dashboard/category-list")
-    .get(dashboardController.getCategoryList); // list categories
+    .get(dashboardController.getCategoryList); 
   app
     .route("/api/dashboard/customer-profile/:id")
     .get(dashboardController.getCustomerProfile); 

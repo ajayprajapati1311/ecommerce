@@ -1,8 +1,31 @@
-get->Users[get all users from table]
-get->UserByID[get users by id from user table]
-delete->>removeuser[remove User from users table]
-post->>insertuser[insert new user into users table]
-put->>updateuser[update existing user in users table]
+ CUSTOMERS VIEW 
+GET ALL CUSTOMERS
+GET CUSTOMERS BY ID
+REMOVE CUSTOMERS
+UPDATE CUSTOMERS
+GET CUSTOMERS PERSONAL PROFILE
 
-get->products[get all products from products table]
-get->productsByID[get all products from products table]
+ SELLERS VIEW
+GET ALL SELLERS
+GET SELLERS BY ID
+REMOVE SELLERS
+UPDATE SELLERS
+GET SELLERS PROFILE
+GET SELLERS PRODUCTS
+GET SELLERS ORDERS
+
+ VENDORS POINT OF VIEW
+GET ALL VENDORS 
+GET ALL VENDORS BY ID
+
+
+ PRODUCTS POINT OF VIEW
+GET PRODUCTS WHERE PRICE > 100
+GET ALL AVAILABLE PRODUCTS
+GET UNAVAILABLE PRODUCTS
+
+ ORDERS POINT OF VIEW 
+GET ORDER LIST
+
+ CATEGORIES POINT OF VIEW 
+GET categories LIST
