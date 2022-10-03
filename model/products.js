@@ -6,9 +6,10 @@ exports.getAllProducts = function () {
     let command = "SELECT * FROM products";
     sql.query(command, (err, rows, field) => {
       if (err) {
-        resolve({ error: "Some error occurred!" });
+       resolve({error:"error occured"});
+        // console.log(err);
       } else {
-        resolve({ products: rows });
+        resolve({products:rows});
       }
     });
   });
@@ -30,7 +31,7 @@ exports.insert = function (req) {
   return new Promise((resolve) => {
     let data = req.body;
     let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO products(title,description,image_url,quantity,price,sellers_id,created_at,modified_at) values("${data.title}","${data.description}","${data.image_url}",${data.quantity},${data.price},${data.sellers_id},"${timeStamp}","${timeStamp}");`;
+    let command = `INSERT INTO products(title,description,image_url,quantity,price,seller_id,created_at,modified_at) values("${data.title}","${data.description}","${data.image_url}",${data.quantity},${data.price},${data.seller_id},"${timeStamp}","${timeStamp}");`;
 
     console.log(command);
     sql.query(command, (err, rows, fields) => {
