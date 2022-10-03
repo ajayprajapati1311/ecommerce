@@ -1,0 +1,16 @@
+Ecommerce App  ----
+
+This is ecommerce Application backend code where several APIs is working together to make a fully app.
+
+customers-->> all customers requests are handled example api for customer login, register, details all customers, remove and update the customers, and able to see their profiles, etc.
+
+sellers-->> all sellers can see their profile, items listed, items sold, total earning, and also able to see their profile,etc
+
+staffs-->> all staff can handle dashboard related APIs like orders, ordered by the customer, available products, unavailable products, products categories lists, customer profile, seller profiile, seller products and seller orders,etc can handled by the staff.
+
+and many more APIs have been created for basic CRUD operations for different tables.
+
+
+
+
+
