@@ -1,4 +1,4 @@
-const mysql = require("my-sql");
+const mysql = require("mysql");
 
 const connUri = {
   host: "localhost",
