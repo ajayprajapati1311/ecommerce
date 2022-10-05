@@ -1,5 +1,5 @@
-const customerController = require("./controllers/customerscontroller");
-const productController = require("./controllers/productscontroller");
+const customerController = require("./controllers/customercontroller");
+const productController = require("./controllers/productcontroller");
 const authController = require("./controllers/authcontroller");
 const sellerController = require("./controllers/sellercontroller");
 const staffController = require("./controllers/staffcontroller");
@@ -10,6 +10,7 @@ const paymentsController = require("./controllers/paymentscontroller");
 const feedbackController = require("./controllers/feedbackcontroller");
 const vendorController = require("./controllers/vendorcontroller");
 const deliveryController = require("./controllers/deliverycontroller");
+const cartController = require("./controllers/cartcontroller");
 const dashboardController = require("./controllers/dashboardControllers/dashboardcontroller");
 
 module.exports = function (app) {
@@ -17,7 +18,7 @@ module.exports = function (app) {
   app
     .route("/api/customer/login")
     .post(authController.customer_login)
-    .get(authController.loginPage);
+    // .get(authController.loginPage);
 
   app.route("/api/customer/register").post(authController.customer_register);
 
@@ -37,7 +38,7 @@ module.exports = function (app) {
   app
     .route("/api/products")
     .get(productController.getAllProducts)
-    .get(productController.productPage)
+    // .get(productController.productPage)
     .post(productController.insert);
   app
     .route("/api/products/:id")
@@ -49,13 +50,12 @@ module.exports = function (app) {
   app
     .route("/api/customers")
     .get(customerController.getAllCustomers)
-    .get(customerController.customerPage);
+    // .get(customerController.customerPage);
   app
     .route("/api/customers/:id")
     .get(customerController.getById)
     .delete(customerController.remove)
     .put(customerController.update);
-
   // Seller
   app.route("/api/seller").get(sellerController.getAllSellers);
   app
@@ -172,3 +172,5 @@ module.exports = function (app) {
     .route("/api/dashboard/vendorprofile")
     .get(dashboardController.getVendorInfo); // get vendor's personal information
 };
+//jwt
+// app.route("/api/test/jwt").get(authController.verifyjwttoken);
