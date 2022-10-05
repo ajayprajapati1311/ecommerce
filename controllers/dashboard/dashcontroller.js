@@ -1,4 +1,4 @@
-const dal = require("../../model/dashboardDal/dashboard");
+const dal = require("../../model/dashboard_dal/dashboard");
 
 exports.getOrderList = async (req, res) => {
   let data = [];
@@ -54,7 +54,7 @@ exports.getStaffInfo = async (req, res) => {
   res.send(data);
 };
 
-exports.getVendorsInfo = async (req, res) => {
+exports.getVendorInfo = async (req, res) => {
   let data = [];
   data = await dal.getVendorPersonalInfo();
   res.send(data);
