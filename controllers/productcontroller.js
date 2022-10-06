@@ -8,9 +8,9 @@ exports.getAllProducts= async (req, res) => {
   data = await dal.getAllProducts(req.params.id);
   res.send(data);
 };
-exports.productPage = async (req, res) => {
-  res.render("../views/products");
-};
+// exports.productPage = async (req, res) => {
+//   res.render("../views/products");
+// };
 
 exports.getById = async (req, res) => {
   let data = [];

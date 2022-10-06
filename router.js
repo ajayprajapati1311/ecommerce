@@ -5,14 +5,12 @@ const sellerController = require("./controllers/sellercontroller");
 const staffController = require("./controllers/staffcontroller");
 const ordersController = require("./controllers/orderscontroller");
 const ordersDataController=require("./controllers/orders_datacontroller");
-
 const paymentsController = require("./controllers/paymentscontroller");
 const feedbackController = require("./controllers/feedbackcontroller");
 const vendorController = require("./controllers/vendorcontroller");
 const deliveryController = require("./controllers/deliverycontroller");
 const cartController = require("./controllers/cartcontroller");
 const dashboardController = require("./controllers/dashboardControllers/dashboardcontroller");
-
 module.exports = function (app) {
   // Customer Authentication
   app
@@ -31,8 +29,8 @@ module.exports = function (app) {
   app.route("/api/staff/register").post(authController.staff_register);
 
   // Vendor Authentication
-  app.route("/api/vendor/login").post(authController.vendor_login);
-  app.route("/api/vendor/register").post(authController.vendor_register);
+  app.route("/api/vendor/login").post(authController.vendors_login);
+  app.route("/api/vendor/register").post(authController.vendors_register);
 
   // Products
   app

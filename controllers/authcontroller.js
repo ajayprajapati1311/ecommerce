@@ -54,13 +54,13 @@ exports.staff_register = async (req, res) => {
 };
 
 // Vendor
-exports.vendor_login = async (req, res) => {
+exports.vendors_login = async (req, res) => {
   let data = [];
   data = await dal.vendor_login(req);
   res.send(data);
 };
 
-exports.vendor_register = async (req, res) => {
+exports.vendors_register = async (req, res) => {
   let data = [];
   data = await dal.vendor_register(req);
   res.send(data);
