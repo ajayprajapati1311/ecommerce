@@ -1,4 +1,4 @@
-const dal = require("../../model/dashboard_dal/dashboard");
+const dal = require("../../model/dashboard_dal/dash");
 
 exports.getOrderList = async (req, res) => {
   let data = [];
