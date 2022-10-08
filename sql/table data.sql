@@ -1,66 +1,524 @@
-INSERT INTO `websiteecommerce`.`customers` (`id`, `firstname`, `lastname`, `email`, `contact_no`, `password`, `location`, `modified_at`, `created_at`) VALUES ('9001', 'Ajay', 'Prajapati', 'ajay@gmail.com', '9956631290', '112@1', 'Gorakhpur', '2022-9-11', '2022-9-10');
-INSERT INTO `websiteecommerce`.`customers` (`id`, `firstname`, `lastname`, `email`, `contact_no`, `password`, `location`, `modified_at`, `created_at`) VALUES ('9002', 'Swastik', 'Sinha', 'swastik1@gmail.com', '7380712994', '111@1', 'Gaya', '2022-08-05', '2022-08-04');
-INSERT INTO `websiteecommerce`.`customers` (`id`, `firstname`, `lastname`, `email`, `contact_no`, `password`, `location`, `modified_at`, `created_at`) VALUES ('9003', 'Shivani', 'Aneja', 'shivani9@gmail.com', '8090901010', '222@2', 'Mohali', '2022-07-08', '2022-07-06');
+-- INSERT SAMPLE DATA INTO TABLES
+-- INSERT INTO USERS 
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "ajayprajapati@gmail.com",
+        "aj@131",
+        "customer"
+    );
+SET @user1Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "swastik@gmail.com",
+        "sw@123",
+        "customer"
+    );
+SET @user2Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "sanju@gmail.com",
+        "sa@123",
+        "seller"
+    );
+SET @user3Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "santosh@gmail.com",
+        "sa@123",
+        "seller"
+    );
+SET @user4Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "mohit@gmail.com",
+        "mo@123",
+        "staff"
+    );
+SET @user5Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "himanshu@gmail.com",
+        "hi@123",
+        "staff"
+    );
+SET @user6Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "aditya@delhivery.com",
+        "ad@123",
+        "vendor"
+    );
+SET @user7Id = LAST_INSERT_ID();
+INSERT INTO users(
+        email,
+        password,
+        user_type
+    )
+values(
+        "vikram@gmail.com",
+        "vi@123",
+        "vendor"
+    );
+SET @user8Id = LAST_INSERT_ID();
+-- INSERT INTO ACCOUNTS
+INSERT INTO accounts(
+        account_number,
+        user_id,
+        balance,
+        created_at,
+        modified_at
+    )
+values(
+        "38156597223",
+        @user1Id,
+        10000,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @accounts1Id = LAST_INSERT_ID(); 
+INSERT INTO accounts(
+        account_number,
+        user_id,
+        balance,
+        created_at,
+        modified_at
+    )
+values(
+        "381565972233",
+        @user3Id,
+        15000,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @accounts2Id = LAST_INSERT_ID();
+INSERT INTO accounts(
+        account_number,
+        user_id,
+        balance,
+        created_at,
+        modified_at
+    )
+values(
+        "3815659722333",
+        @user5Id,
+        20000,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @accounts3Id = LAST_INSERT_ID();
+INSERT INTO accounts(
+        account_number,
+        user_id,
+        balance,
+        created_at,
+        modified_at
+    )
+values(
+        "3815659722233",
+        @user7Id,
+        5000,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @accounts4Id = LAST_INSERT_ID();
 
-INSERT INTO `websiteecommerce`.`delivery` (`id`, `status`, `location`, `created_at`, `modified_at`) VALUES ('00110', 'confirmed', 'Gorakhpur', '2022-9-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`delivery` (`id`, `status`, `location`, `created_at`, `modified_at`) VALUES ('00011', 'delivered', 'Gaya', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`delivery` (`id`, `status`, `location`, `created_at`, `modified_at`) VALUES ('11100', 'pending', 'Mohali', '2022-07-06', '2022-07-08');
+-- INSERT INTO CUSTOMERs
+INSERT INTO customers(
+        user_id,
+        firstname,
+        lastname,
+        contact_no,
+        location,
+        created_at,
+        modified_at
+    )
+values(
+        @user1Id,
+        "Ajay",
+        "Prajapati",
+        "9956631290",
+        "Gorakhpur, Uttar pradesh",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @customer1Id = LAST_INSERT_ID();
+INSERT INTO customers(
+        user_id,
+        firstname,
+        lastname,
+        contact_no,
+        location,
+        modified_at,
+        created_at
+    )
+values(
+        @user2Id,
+        "Swastik",
+        "Sinha",
+        "7380712994",
+        "Gaya, Bihar",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @customer2Id = LAST_INSERT_ID();
 
-INSERT INTO `websiteecommerce`.`feedback` (`description`, `created_at`, `modified_at`) VALUES ('Good', '2022-09-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`feedback` (`description`, `created_at`, `modified_at`) VALUES ('Perfect', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`feedback` (`description`, `created_at`, `modified_at`) VALUES ('Not good', '2022-07-06', '2022-07-08');
 
-INSERT INTO `websiteecommerce`.`orders` (`id`, `status`, `created_at`, `modified_at`) VALUES ('75500', 'delivered', '2022-09-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`orders` (`id`, `status`, `created_at`, `modified_at`) VALUES ('75550', 'confirm', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`orders` (`id`, `status`, `created_at`, `modified_at`) VALUES ('75555', 'pending', '2022-07-06', '2022-07-08');
+-- INSERT INTO SELLERS
+INSERT INTO sellers(
+        user_id,
+        name,
+        contact_no,
+        location,
+        created_at,
+        modified_at
+    )
+VALUES(
+        @user3Id,
+        "A Electronics",
+        "Haryana",
+        "7380712994",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @sellers1Id = LAST_INSERT_ID();
+INSERT INTO sellers(
+        user_id,
+        name,
+        location,
+        contact_no,
+        created_at,
+        modified_at
+    )
+VALUES(
+        @user4Id,
+        "B Electronics",
+        "Punjab",
+        "8896349609",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @sellers2Id = LAST_INSERT_ID();
 
-INSERT INTO `websiteecommerce`.`orders_data` (`quantity`, `price`, `created_at`, `modified_at`) VALUES ('1', '1299', '2022-09-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`orders_data` (`quantity`, `price`, `created_at`, `modified_at`) VALUES ('8', '1999', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`orders_data` (`quantity`, `price`, `created_at`, `modified_at`) VALUES ('3', '999', '2022-07-06', '2022-07-08');
+-- INERT INTO STAFFS
+INSERT INTO staffs(
+        user_id,
+        firstname,
+        lastname,
+        contact_no,
+        empid,
+        created_at,
+        modified_at
+    )
+values(
+        @user5Id,
+        "Swastik",
+        "Sinha",
+        "7380712294",
+        101,
+        "2022-02-10",
+        "2021-09-26"
+    );
+INSERT INTO staffs(
+        user_id,
+        firstname,
+        lastname,
+        contact_no,
+        empid,
+        created_at,
+        modified_at
+    )
+values(
+        @user6Id,
+        "Pradeep",
+        "Solanki",
+        "7643223535",
+        102,
+        "2022-02-10",
+        "2021-09-26"
+    );
 
-INSERT INTO `websiteecommerce`.`products` (`title`, `description`, `image_url`, `quantity`, `created_at`, `modified_at`, `price`) VALUES ('noisewatch', 'smartwatch', '111', '1', '2022-09-10', '2022-09-11', '1299');
-INSERT INTO `websiteecommerce`.`products` (`title`, `description`, `image_url`, `quantity`, `created_at`, `modified_at`, `price`) VALUES ('leetshirt', 'halfsleevtshirt', '112', '8', '2022-08-04', '2022-08-05', '1999');
-INSERT INTO `websiteecommerce`.`products` (`title`, `description`, `image_url`, `quantity`, `created_at`, `modified_at`, `price`) VALUES ('boatearbuds', 'bluetoothearbud', '113', '3', '2022-07-06', '2022-07-08', '999');
+-- INSERT INTO VENDORS
+INSERT INTO vendors(
+        user_id,
+        name,
+        contact_no,
+        created_at,
+        modified_at
+    )
+values(
+        @user7Id,
+        "BlueDart",
+        "5435433232",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @vendors1Id = LAST_INSERT_ID();
+INSERT INTO vendors(
+        user_id,
+        name,
+        contact_no,
+        created_at,
+        modified_at
+    )
+values(
+        @user8Id,
+        "Delhivery",
+        "5435433231",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @vendors2Id = LAST_INSERT_ID();
 
-INSERT INTO `websiteecommerce`.`seller` (`name_of_seller`, `location`, `email`, `password`, `quantity`, `contact_no`, `created_at`, `modified_at`) VALUES ('Kishan', 'Gorakhpur', 'kishan@gmail.com', '112@1', '1', '9090908080', '2022-09-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`seller` (`name_of_seller`, `location`, `email`, `password`, `quantity`, `contact_no`, `created_at`, `modified_at`) VALUES ('Sahil', 'Gaya', 'sahil@gmail.com', '111@1', '8', '9000000009', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`seller` (`name_of_seller`, `location`, `email`, `password`, `quantity`, `contact_no`, `created_at`, `modified_at`) VALUES ('Santosh', 'Mohali', 'santosh@gmail.com', '110@1', '3', '8000000008', '2022-07-06', '2022-06-08');
+
+-- INSERT INTO CATEGORIES
+INSERT INTO categories(name, created_at, modified_at)
+VALUES ("Fashion", "2022-02-10", "2021-09-26");
+SET @categories1Id = LAST_INSERT_ID();
+INSERT INTO categories(name, created_at, modified_at)
+VALUES ("Electronincs", "2022-02-10", "2021-09-26");
+SET @categories2Id = LAST_INSERT_ID();
 
 
-INSERT INTO `websiteecommerce`.`staff` (`firstname`, `lastname`, `email`, `password`, `contact_no`, `created_at`, `modified_at`, `empid`) VALUES ('Abhijeet', 'Singh', 'singh@gmail.com', '222@1', '909090', '2022-09-10', '2022-09-11', '111');
-INSERT INTO `websiteecommerce`.`staff` (`firstname`, `lastname`, `email`, `password`, `contact_no`, `created_at`, `modified_at`, `empid`) VALUES ('Shubham', 'Chauhan', 'shubham1@gmail.com', '222@2', '909091', '2022-08-04', '2022-08-05', '112');
-INSERT INTO `websiteecommerce`.`staff` (`firstname`, `lastname`, `email`, `password`, `contact_no`, `created_at`, `modified_at`, `empid`) VALUES ('Ankit', 'Thakur', 'thakur@gmail.com', '222@3', '909092', '2022-07-06', '2022-07-08', '113');
+-- INSERT INTO PRODUCTS
+INSERT INTO products(
+        title,
+        description,
+        image_url,
+        quantity,
+        price,
+        category_id,
+        seller_id,
+        created_at,
+        modified_at
+    )
+VALUES(
+        "Samsung Galaxy S20",
+        "Smart Phone",
+        "https://m.media-amazon.com/images/I/81QVLzeVckL._SL1500_.jpg",
+        1,
+        29999,
+        @categories1Id,
+        @sellers1Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @product1Id = LAST_INSERT_ID();
+INSERT INTO products(
+        title,
+        description,
+        image_url,
+        quantity,
+        price,
+        category_id,
+        seller_id,
+        created_at,
+        modified_at
+    )
+VALUES(
+        "Fossil Gen 5",
+        "Touchscreen Men's Smartwatch with Speaker, Heart Rate, GPS, Music Storage and Smartphone Notifications",
+        "https://m.media-amazon.com/images/I/71qNX0wixBL._UL1500_.jpg",
+        2,
+        18396,
+        @categories2Id,
+        @sellers2Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @product2Id = LAST_INSERT_ID();
 
-INSERT INTO `websiteecommerce`.`vendor` (`name_of_vendor`, `email`, `password`, `created_at`, `modified_at`, `contact_no`) VALUES ('Saurav', 'saurav1@gmail.com', '110@1', '2022-09-10', '2022-09-11', '809080');
-INSERT INTO `websiteecommerce`.`vendor` (`name_of_vendor`, `email`, `password`, `created_at`, `modified_at`, `contact_no`) VALUES ('Sachin', 'sachin@gmail.com', '111@2', '2022-08-04', '2022-08-05', '809081');
-INSERT INTO `websiteecommerce`.`vendor` (`name_of_vendor`, `email`, `password`, `created_at`, `modified_at`, `contact_no`) VALUES ('Sumit', 'sumit@gmai.com', '100@1', '2022-07-06', '2022-07-08', '809082');
 
-INSERT INTO `websiteecommerce`.`payments` (`date_of_payment`, `amount`, `mode_of_payment`, `created_at`, `modified_at`) VALUES ('2022-09-10', '1299', 'UPI', '2022-09-10', '2022-09-11');
-INSERT INTO `websiteecommerce`.`payments` (`date_of_payment`, `amount`, `mode_of_payment`, `created_at`, `modified_at`) VALUES ('2022-08-04', '1999', 'COD', '2022-08-04', '2022-08-05');
-INSERT INTO `websiteecommerce`.`payments` (`date_of_payment`, `amount`, `mode_of_payment`, `created_at`, `modified_at`) VALUES ('2022-07-06', '999', 'Paylater', '2022-07-06', '2022-07-08');
+-- INSERT INTO ORDERS
+INSERT INTO orders(status, customer_id, created_at, modified_at)
+values(
+        "Delivered",
+        @customer1Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @order1Id = LAST_INSERT_ID();
+INSERT INTO orders(status, customer_id, created_at, modified_at)
+values(
+        "In Transit",
+        @customer2Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @order2Id = LAST_INSERT_ID();
 
-UPDATE `websiteecommerce`.`delivery` SET `order_id` = '75500', `vendor_id` = '1' WHERE (`id` = '11');
-UPDATE `websiteecommerce`.`delivery` SET `order_id` = '75550', `vendor_id` = '2' WHERE (`id` = '110');
-UPDATE `websiteecommerce`.`delivery` SET `order_id` = '75555', `vendor_id` = '3' WHERE (`id` = '11100');
 
-UPDATE `websiteecommerce`.`feedback` SET `image_url` = '1112', `product_id` = '1', `customer_id` = '9001' WHERE (`id` = '1');
-UPDATE `websiteecommerce`.`feedback` SET `image_url` = '1113', `product_id` = '2', `customer_id` = '9002' WHERE (`id` = '2');
-UPDATE `websiteecommerce`.`feedback` SET `image_url` = '1114', `product_id` = '3', `customer_id` = '9003' WHERE (`id` = '3');
+-- INSERT INTO ORDERS_DATA
+INSERT INTO ordersData(
+        quantity,
+        price,
+        order_id,
+        product_id,
+        created_at,
+        modified_at
+    )
+VALUES(
+        1,
+        29999,
+        @order1Id,
+        @product1Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @order_data1Id = LAST_INSERT_ID();
+INSERT INTO ordersData(
+        quantity,
+        price,
+        order_id,
+        product_id,
+        created_at,
+        modified_at
+    )
+VALUES(
+        2,
+        18396,
+        @order2Id,
+        @product2Id,
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @order_data2Id = LAST_INSERT_ID();
 
-UPDATE `websiteecommerce`.`orders` SET `customer_id` = '9001' WHERE (`id` = '75500');
-UPDATE `websiteecommerce`.`orders` SET `customer_id` = '9002' WHERE (`id` = '75550');
-UPDATE `websiteecommerce`.`orders` SET `customer_id` = '9003' WHERE (`id` = '75555');
 
-UPDATE `websiteecommerce`.`orders_data` SET `order_id` = '75500', `product_id` = '1' WHERE (`id` = '1');
-UPDATE `websiteecommerce`.`orders_data` SET `order_id` = '75550', `product_id` = '2' WHERE (`id` = '2');
-UPDATE `websiteecommerce`.`orders_data` SET `order_id` = '75555', `product_id` = '3' WHERE (`id` = '3');
+-- INSERT INTO PAYMENTS
+INSERT INTO payments(
+        total_amount,
+        discount_percentage,
+        payable_amount,
+        order_id,
+        mode_of_payment,
+        created_at,
+        modified_at
+    )
+values(
+        29999,
+        10,
+        26999.1,
+        @order1Id,
+        "netbanking",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @payments1Id = LAST_INSERT_ID();
+INSERT INTO payments(
+        total_amount,
+        discount_percentage,
+        payable_amount,
+        order_id,
+        mode_of_payment,
+        created_at,
+        modified_at
+    )
+values(
+        18396,
+        5,
+        17476.2,
+        @order2Id,
+        "UPI",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @payments2Id = LAST_INSERT_ID();
 
-UPDATE `websiteecommerce`.`payments` SET `order_id` = '75500' WHERE (`id` = '3');
-UPDATE `websiteecommerce`.`payments` SET `order_id` = '75550' WHERE (`id` = '4');
-UPDATE `websiteecommerce`.`payments` SET `order_id` = '75555' WHERE (`id` = '5');
 
-UPDATE `websiteecommerce`.`seller` SET `product_id` = '1', `price` = '1299' WHERE (`id` = '1');
-UPDATE `websiteecommerce`.`seller` SET `product_id` = '2', `price` = '1999' WHERE (`id` = '2');
-UPDATE `websiteecommerce`.`seller` SET `product_id` = '3', `price` = '999' WHERE (`id` = '3');
+-- INSERT INTO FEEDBACKS
+INSERT INTO feedbacks(
+        image_url,
+        product_id,
+        customer_id,
+        description,
+        created_at,
+        modified_at
+    )
+values(
+        "https://m.media-amazon.com/images/I/81QVLzeVckL._SL1500_.jpg",
+        @product1Id,
+        @customer1Id,
+        "Nice smart phone",
+        "2022-02-10",
+        "2021-09-26"
+    );
+INSERT INTO feedbacks(
+        image_url,
+        product_id,
+        customer_id,
+        description,
+        created_at,
+        modified_at
+    )
+values(
+        "https://m.media-amazon.com/images/I/71qNX0wixBL._UL1500_.jpg",
+        @product2Id,
+        @customer2Id,
+        "Nice smart wacth",
+        "2022-02-10",
+        "2021-09-26"
+    );
+
+-- INSERT INTO DELIVERIES
+INSERT INTO deliveries(
+        order_id,
+        vendor_id,
+        location,
+        created_at,
+        modified_at
+    )
+values(
+        @order1Id,
+        @vendors1Id,
+        "Jaipur",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @deliveries1Id = LAST_INSERT_ID();
+INSERT INTO deliveries(
+        order_id,
+        vendor_id,
+        location,
+        created_at,
+        modified_at
+    )
+values(
+        @order2Id,
+        @vendors2Id,
+        "Sirohi",
+        "2022-02-10",
+        "2021-09-26"
+    );
+SET @deliveries2Id = LAST_INSERT_ID();
+
+-- FundsTransfer Query
 
 

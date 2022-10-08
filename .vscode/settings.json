@@ -12,6 +12,19 @@
             "name": "mysql",
             "database": "sql",
             "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "ajay",
+            "database": "ecommerce",
+            "username": "root"
         }
     ]
 }

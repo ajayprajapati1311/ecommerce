@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const connUri = {
   host: "localhost",
   user: "root",
-  password: "Hatelove@1311",
+  password: "password",
   database: "ecommerce"
   // multipleStatements: true,
 };

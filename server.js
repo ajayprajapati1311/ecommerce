@@ -6,7 +6,7 @@ const routes = require("./router");
 
 const jwt=require("jsonwebtoken");
 
-let jwtSecretKey="sharma_secret";
+let jwtSecretKey="ajay_secret";
 
 const ejs=require("ejs");
 

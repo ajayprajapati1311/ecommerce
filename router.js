@@ -10,7 +10,7 @@ const feedbackController = require("./controllers/feedbackcontroller");
 const vendorController = require("./controllers/vendorcontroller");
 const deliveryController = require("./controllers/deliverycontroller");
 const cartController = require("./controllers/cartcontroller");
-const dashboardController = require("./controllers/dashboardControllers/dashboardcontroller");
+const dashboardController = require("./controllers/dashboard/dashcontroller");
 module.exports = function (app) {
   // Customer Authentication
   app
