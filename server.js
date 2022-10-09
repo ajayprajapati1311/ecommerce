@@ -29,11 +29,11 @@ var sessionMiddlware = expressSession({
 app.use(sessionMiddlware);
 
 //
-productroutes(app);
-customerroutes(app);
-sellerroutes(app);
-staffroutes(app);
-vendorroutes(app);
+productRoutes(app);
+customerRoutes(app);
+sellerRoutes(app);
+staffRoutes(app);
+vendorRoutes(app);
 
 app.listen(PORT, () => {
   console.log(`App Server is Listening on Port ${PORT}`);

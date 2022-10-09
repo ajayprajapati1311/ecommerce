@@ -1,4 +1,4 @@
-const dal = require("../model/cartDal");
+const dal = require("../model/cartmodel");
 
 
 exports.getAll = async (req, res) => {

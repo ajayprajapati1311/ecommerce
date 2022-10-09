@@ -1,4 +1,4 @@
-const dal = require("../model/feedback_dal");
+const dal = require("../model/feedbackmodel");
 
 exports.getAllFeedback = async (req, res) => {
   let data = [];

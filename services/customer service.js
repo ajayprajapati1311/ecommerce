@@ -1,4 +1,4 @@
-import Customer from "../model/customersDal";
+import Customer from "../model/customermodel.js";
 import sql from "../model/db.js";
 
 export default class CustomerService {

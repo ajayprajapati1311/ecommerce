@@ -1,4 +1,4 @@
-import Staff from "../model/staffDal";
+import Staff from "../model/staffmodel.js";
 import sql from "../model/db.js";
 
 export default class StaffService {
