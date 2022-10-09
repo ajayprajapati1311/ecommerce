@@ -1,4 +1,4 @@
-import DashboardController from "../controllers/dashboardControllers/dashboardcontroller.js";
+import DashboardController from "../controllers/dashboardControllers/dasboardcontroller.js";
 import DashboardService from "../services/dashboard service.js";
 
 export default function (app) {
@@ -8,7 +8,6 @@ export default function (app) {
   //Map controller callback functions for rest API routes
   app.get("/api/orderlist", controller.getOrderList);
   app.get("/api/getavailableproducts", controller.getAvailableProducts);
-  app.get("/api/getunavailableproducts", controller.getZeroAvailableProducts);
   app.get("/api/categorylist", controller.getCategoryList);
   app.get("/api/customerprofile", controller.getCustomerProfile);
   app.get("/api/sellerprofile", controller.getSellerProfile);

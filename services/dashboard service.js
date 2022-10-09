@@ -46,19 +46,6 @@ export default class DashboardService {
     });
   };
 
-  getZeroAvailableProducts = () => {
-    return new Promise((resolve) => {
-      let command = `SELECT title,id,quantity FROM ${this.productModel.table_name} WHERE quantity = 0;`;
-      sql.query(command, (err, rows, field) => {
-        if (err) {
-          resolve(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  };
-
   getCategoryList = () => {
     return new Promise((resolve) => {
       let command = `SELECT ${this.productModel.table_name}.category_id, ${this.categoryModel.table_name}.name, COUNT(*) as count FROM ${this.productModel.table_name} JOIN ${this.categoryModel.table_name} ON (${this.productModel.table_name}.category_id = ${this.categoryModel.table_name}.id) GROUP BY ${this.productModel.table_name}.categories_id;`;
