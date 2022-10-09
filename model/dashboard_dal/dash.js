@@ -41,7 +41,7 @@ exports.getZeroAvailableProducts = function () {
 
 exports.getCategoryList = function () {
   return new Promise((resolve) => {
-    let command = `SELECT products.category_id, category.name, COUNT(*) as count FROM products JOIN category ON (products.category_id = category.id) GROUP BY products.category_id;`;
+    let command = `SELECT products.category_id, categories.name, COUNT(*) as count FROM products JOIN categories ON (products.category_id = categories.id) GROUP BY products.category_id;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
@@ -60,22 +60,22 @@ exports.getCustomerPersonalProfile = function (id) {
     customers.contact_no as contact_no,
     orders.status as order_status,
     orders.modified_at as order_date,
-    orders_data.quantity as order_quantity,
-    orders_data.price as order_item_price,
+    ordersData.quantity as order_quantity,
+    ordersData.price as order_item_price,
     products.title as product_title,
     products.price as product_current_price,
     payments.mode_of_payment as mode_of_payment,
     customers.id as customer_id,
     orders.id as order_id,
-    orders_data.id as orders_data_id,
+    ordersData.id as ordersData_id,
     products.id as product_id,
     payments.id as payment_id
-    FROM orders_data
-    JOIN products ON orders_data.product_id = products.id
-    JOIN orders ON orders_data.order_id = order_id
+    FROM ordersData
+    JOIN products ON ordersData.product_id = products.id
+    JOIN orders ON ordersData.order_id = order_id
     JOIN payments ON orders.id = payments.order_id
     JOIN customers ON orders.customer_id = customers.id
-    WHERE customers.id=${id} AND orders_data.product_id = products.id AND orders.id = payments.order_id AND orders.customer_id = customers.id AND orders.id = orders_data.order_id;`;
+    WHERE customers.id=${id} AND ordersData.product_id = products.id AND orders.id = payments.order_id AND orders.customer_id = customers.id AND orders.id = ordersData.order_id;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
@@ -88,7 +88,7 @@ exports.getCustomerPersonalProfile = function (id) {
 
 exports.getSellerProfile = function () {
   return new Promise((resolve) => {
-    let command = `SELECT name_of_seller,location,email,contact_no FROM seller;`;
+    let command = `SELECT name,location,email,contact_no FROM sellers;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
@@ -102,14 +102,14 @@ exports.getSellerProfile = function () {
 exports.getSellerProducts = function (id) {
   return new Promise((resolve) => {
     let command = `SELECT 
-    seller.name_of_seller as seller_name,
-    seller.email as seller_email,
+    sellers.name as sellers_name,
+    sellers.email as sellers_email,
     products.title as product_title,
     products.price as product_price,
     products.quantity as product_quantity
-    FROM seller 
-    JOIN products ON seller.id = products.seller_id 
-    WHERE seller.id = ${id} AND seller.id = products.seller_id;`;
+    FROM sellers 
+    JOIN products ON sellers.id = products.sellers_id 
+    WHERE sellers.id = ${id} AND sellers.id = products.sellers_id;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
@@ -123,19 +123,19 @@ exports.getSellerProducts = function (id) {
 exports.getSellerOrders = function (id) {
   return new Promise((resolve) => {
     let command = `SELECT
-    seller.name_of_seller as seller_name,
-    seller.email as seller_email,
+    sellers.name as sellers_name,
+    sellers.email as sellers_email,
     products.title as product_title,
     products.price as product_price,
     products.quantity as product_quantity,
-    orders_data.quantity as order_quantity,
-    orders_data.price as order_item_price,
+    ordersData.quantity as order_quantity,
+    ordersData.price as order_item_price,
     orders.status as order_status
-    FROM orders_data
-    JOIN orders ON orders_data.order_id = orders.id
-    JOIN products ON products.id = orders_data.product_id
-    JOIN seller ON seller.id = products.seller_id
-    WHERE seller.id= ${id} AND orders_data.order_id = orders.id AND products.id = orders_data.product_id AND seller.id = products.seller_id;`;
+    FROM ordersData
+    JOIN orders ON ordersData.order_id = orders.id
+    JOIN products ON products.id = ordersData.product_id
+    JOIN sellers ON sellers.id = products.sellers_id
+    WHERE sellers.id= ${id} AND ordersData.order_id = orders.id AND products.id = ordersData.product_id AND sellers.id = products.sellers_id;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
@@ -148,7 +148,7 @@ exports.getSellerOrders = function (id) {
 
 exports.getVendorProfile = function () {
   return new Promise((resolve) => {
-    let command = `SELECT name_of_vendor,email,contact_no FROM vendor;`;
+    let command = `SELECT name,email,contact_no FROM vendors;`;
     sql.query(command, (err, rows, field) => {
       if (err) {
         resolve(err);
