@@ -1,68 +1,21 @@
-const sql = require("./db");
+export default class Deliveries {
+  //Parameterized constructor
+  constructor(id, order_id, vendor_id, location, created_at, modified_at) {
+    this.id = id;
+    this.order_id = order_id;
+    this.vendor_id = vendor_id;
+    this.location = location;
+    this.created_at = created_at;
+    this.modified_at = modified_at;
 
-exports.getAllDelivery = function () {
-  return new Promise((resolve) => {
-    let command = "SELECT * FROM deliveries";
-    sql.query(command, (err, rows, field) => {
-      if (err) {
-        console.log(err);
-      } else {
-        resolve(rows);
-      }
-    });
-  });
-};
+    this.table_name = "orders";
+  }
 
-exports.getById = function (id) {
-  return new Promise((resolve) => {
-    let command = `SELECT * FROM deliveries WHERE id="${id}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      resolve(rows);
-    });
-  });
-};
-
-exports.insert = function (req) {
-  return new Promise((resolve) => {
-    let data = req.body;
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `INSERT INTO deliveries(order_id,status,location,vendor_id,created_at,modified_at) values("${data.order_id}","${data.status}","${data.location}","${data.vendor_id}","${timeStamp}","${timeStamp}");`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log(err);
-      } else {
-        resolve("intent");
-      }
-    });
-  });
-};
-
-exports.remove = function (id) {
-  return new Promise((resolve) => {
-    let command = `DELETE FROM deliveries Where id="${id}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log(err);
-      } else {
-        resolve("Deleted");
-      }
-    });
-  });
-};
-
-exports.update = function (id, data) {
-  return new Promise((resolve) => {
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-    let command = `UPDATE deliveries SET contact_no="${data.contact_no}",modified_at="${timeStamp}" WHERE id="${id}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        resolve("update failed");
-      } else {
-        resolve("Updated");
-      }
-    });
-  });
-};
+  display() {
+    console.log(`Id= ${this.id}`);
+    console.log(`Order Id= ${this.order_id}`);
+    console.log(`Vendor Id= ${this.vendor_id}`);
+    console.log(`Location= ${this.location}`);
+    console.log(`Created At= ${this.created_at}`);
+  }
+}

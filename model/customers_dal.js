@@ -1,86 +1,34 @@
+export default class Customer {
+  //Parameterized constructor
+  constructor(
+    id,
+    user_id,
+    firstname,
+    lastname,
+    contact_no,
+    location,
+    created_at,
+    modified_at
+  ) {
+    this.id = id;
+    this.user_id = user_id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.contact_no = contact_no;
+    this.location = location;
+    this.created_at = created_at;
+    this.modified_at = modified_at;
 
-const sql = require("./db");
+    this.table_name = "customers";
+  }
 
-exports.getAllCustomers = function (req) {
-  return new Promise((resolve) => {
-    let command = "SELECT * FROM customers";
-    sql.query(command, (err, rows, field) => {
-      if (err) {
-        resolve({error:"error occured"})
-        // console.log(err);
-      } else {
-        resolve({customers:rows});
-      }
-    });
-  });
-};
-
-exports.getById = function (req) {
-  return new Promise((resolve) => {
-    let id = req.params.id;
-    let user = req.user;
-    let command = `SELECT * FROM customers WHERE id="${id}"`;
-    sql.query(command, (err, rows, fields) => {
-      if (err) {
-        console.log("Error:", err);
-      }
-      let dbUser = rows[0];
-      if (dbUser.email !== user.email) {
-        resolve("Unauthorized User");
-      }
-      resolve(dbUser);
-    });
-  });
-};
-
-exports.remove = function (id) {
-
-  return new Promise((resolve) => {
-
-    let command = `DELETE FROM customers Where id="${id}"`;
-
-    sql.query(command, (err, rows, fields) => {
-
-      if (err) {
-
-        console.log(err);
-
-      } else {
-
-        resolve("Deleted!");
-
-      }
-
-    });
-
-  });
-
-};
-
-
-
-exports.update = function (id, data) {
-
-  return new Promise((resolve) => {
-
-    let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-
-    let command = `UPDATE customers SET contact_no="${data.contact_no}", modified_at="${timeStamp}" WHERE id="${id}"`;
-
-    sql.query(command, (err, rows, fields) => {
-
-      if (err) {
-
-        resolve(err);
-
-      } else {
-
-        resolve("Updated!");
-
-      }
-
-    });
-
-  });
-
-};
+  display() {
+    console.log(`Id= ${this.id}`);
+    console.log(`User Id= ${this.user_id}`);
+    console.log(`First Name= ${this.firstname}`);
+    console.log(`Last Name= ${this.lastname}`);
+    console.log(`Mobile= ${this.contact_no}`);
+    console.log(`Location= ${this.location}`);
+    console.log(`Created At= ${this.created_at}`);
+  }
+}
