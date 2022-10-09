@@ -20,7 +20,7 @@ WHERE account_number = account_to;
 COMMIT;
 END;
 
-CALL FundsTransfer(200, "456151126165", "45615156165", "2021-09-26");
+CALL FundsTransfer(200, "38156597223", "3815659722233", "2021-09-26");
 
 -- ORDER PAYMENT 
 
@@ -76,8 +76,8 @@ SET @discountPercentage = 10;
 SET @orderId = 8;
 SET @modeOfPayment = "UPI";
 SET @amount = 900;
-SET @account_to = "456151126165";
-SET @account_from = "45615156165";
+SET @account_to = "3815659722233";
+SET @account_from = "38156597223";
 SET @timestamp = "2021-09-26";
 CALL OrderPayment(
     @totalAmount,
