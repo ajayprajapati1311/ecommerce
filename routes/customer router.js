@@ -1,7 +1,7 @@
-import CustomerController from "../controllers/customer.controller.js";
-import AuthController from "../controllers/auth.controller.js";
-import CustomerService from "../services/customer.service.js";
-import AuthService from "../services/auth.service.js";
+import CustomerController from "../controllers/customer controller.js";
+import AuthController from "../controllers/auth controller.js";
+import CustomerService from "../services/customer service.js";
+import AuthService from "../services/auth service.js";
 
 export default function (app) {
   let customermgr = new CustomerService();

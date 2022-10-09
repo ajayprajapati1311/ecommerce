@@ -1,7 +1,7 @@
-import SellerController from "../controllers/seller.controller.js";
-import AuthController from "../controllers/auth.controller.js";
-import SellerServices from "../services/seller.service.js";
-import AuthService from "../services/auth.service.js";
+import SellerController from "../controllers/seller controller.js";
+import AuthController from "../controllers/auth controller.js";
+import SellerServices from "../services/seller service.js";
+import AuthService from "../services/auth service.js";
 
 export default function (app) {
   let sellermgr = new SellerServices();

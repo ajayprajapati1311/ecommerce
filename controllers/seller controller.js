@@ -1,5 +1,5 @@
 //Controller
-export default class SellerController {
+export default class Sellercontroller {
   //constructor Dependency Injection
   constructor(mgr) {
     this.repoManager = mgr;

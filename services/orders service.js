@@ -1,6 +1,6 @@
-import Orders from "../model/orders.model.js";
-import Ordersdata from "../model/ordersdata.model.js";
-import Payments from "../model/payment.model.js";
+import Orders from "../model/ordersDal";
+import Ordersdata from "../model/orders_data_dal";
+import Payments from "../model/paymentsDal";
 import sql from "../model/db.js";
 
 export default class OrdersService {

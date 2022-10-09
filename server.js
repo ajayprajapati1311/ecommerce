@@ -1,55 +1,40 @@
-const express = require("express");
-
-const expressSession = require("express-session");
-
-const routes = require("./router");
-
-const jwt=require("jsonwebtoken");
-
-let jwtSecretKey="ajay_secret";
-
-const ejs=require("ejs");
-
-
+import express from "express";
+import expressSession from "express-session";
+import cors from "cors";
+import productRoutes from "./routes/product router.js";
+import customerRoutes from "./routes/customer router.js";
+import vendorRoutes from "./routes/vendor router.js";
+import staffRoutes from "./routes/staff router.js";
+import sellerRoutes from "./routes/seller router.js";
+// import routes from "./routes/router.js";
 
 const oneDay = 1000 * 60 * 60 * 24;
-
 const app = express();
-
-app.set("view engine","ejs");
-
-
-
-const PORT = 9000;
-
-
+const PORT = 7000;
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
 
-
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 var sessionMiddlware = expressSession({
-
   secret: "cart",
-
   saveUninitialized: true,
-
   cookie: { maxAge: oneDay },
-
   resave: false,
-
 });
 
 app.use(sessionMiddlware);
 
-
-
-routes(app);
+//
+productroutes(app);
+customerroutes(app);
+sellerroutes(app);
+staffroutes(app);
+vendorroutes(app);
 
 app.listen(PORT, () => {
-
   console.log(`App Server is Listening on Port ${PORT}`);
-
 });

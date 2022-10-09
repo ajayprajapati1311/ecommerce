@@ -1,4 +1,4 @@
-import Ordersdata from "../model/ordersdata.model.js";
+import Ordersdata from "../model/orders_data_dal";
 import sql from "../model/db.js";
 
 export default class OrdersService {

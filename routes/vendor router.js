@@ -1,7 +1,7 @@
-import VendorController from "../controllers/vendor.controller.js";
-import AuthController from "../controllers/auth.controller.js";
-import VendorServices from "../services/vendor.service.js";
-import AuthService from "../services/auth.service.js";
+import VendorController from "../controllers/vendor controller.js";
+import AuthController from "../controllers/auth controller.js";
+import VendorServices from "../services/vendor service.js";
+import AuthService from "../services/auth service.js";
 
 export default function (app) {
   let vendormgr = new VendorServices();

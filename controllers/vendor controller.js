@@ -1,24 +1,24 @@
 //Controller
-export default class StaffController {
+export default class Vendorcontroller {
   //constructor Dependency Injection
   constructor(mgr) {
     this.repoManager = mgr;
   }
 
   get = async (req, res) => {
-    console.log("Fetching All Staffs");
+    console.log("Fetching All Vendors");
     let allVendors = await this.repoManager.getAll();
     res.send(allVendors.data);
   };
 
   getById = async (req, res) => {
-    console.log("Fetching All staff By Id");
+    console.log("Fetching All vendors By Id");
     let customer = await this.repoManager.getById(req.params.id);
     res.send(customer.data);
   };
 
   update = async (req, res) => {
-    console.log("updating a staff");
+    console.log("updating a vendor");
     let result = await this.repoManager.update(req.params.id, req.body);
     res.send(result.data);
   };

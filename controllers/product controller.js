@@ -1,5 +1,5 @@
 //Controller
-export default class ProductController {
+export default class Productcontroller {
   //constructor Dependency Injection
   constructor(mgr) {
     this.repoManager = mgr;

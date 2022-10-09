@@ -1,4 +1,4 @@
-import Delivery from "../model/delivery.model.js";
+import Delivery from "../model/deliveryDal";
 import sql from "../model/db.js";
 
 export default class DeliveriesService {

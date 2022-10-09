@@ -1,4 +1,4 @@
-import Payments from "../model/payment.model.js";
+import Payments from "../model/paymentsDal";
 import sql from "../model/db.js";
 
 export default class PaymentService {

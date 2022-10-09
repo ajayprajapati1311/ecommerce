@@ -1,7 +1,7 @@
 import config from "../config.js";
 import jwt from "jsonwebtoken";
 
-export default class AuthController {
+export default class authController {
   //constructor Dependency Injection
   constructor(mgr) {
     this.repoManager = mgr;

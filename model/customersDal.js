@@ -1,4 +1,4 @@
-export default class Customer {
+export default class customer {
   //Parameterized constructor
   constructor(
     id,

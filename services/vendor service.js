@@ -1,7 +1,7 @@
-import Vendor from "../model/vendor.model.js";
+import Vendor from "../model/vendorDal";
 import sql from "../model/db.js";
 
-export default class VendorService {
+export default class Vendorservice {
   //constructor Dependency Injection
   constructor() {
     this.model = new Vendor();
