@@ -1,25 +1,25 @@
-const dal = require("../model/vendor_dal");
+//Controller
+export default class VendorController {
+  //constructor Dependency Injection
+  constructor(mgr) {
+    this.repoManager = mgr;
+  }
 
-exports.getAllVendor = async (req, res) => {
-  let data = [];
-  data = await dal.getAllVendor();
-  res.send(data);
-};
+  get = async (req, res) => {
+    console.log("Fetching All Vendors");
+    let allVendors = await this.repoManager.getAll();
+    res.send(allVendors.data);
+  };
 
-exports.getById = async (req, res) => {
-  let data = [];
-  data = await dal.getById(req.params.id);
-  res.send(data);
-};
+  getById = async (req, res) => {
+    console.log("Fetching All vendors By Id");
+    let customer = await this.repoManager.getById(req.params.id);
+    res.send(customer.data);
+  };
 
-exports.update = async (req, res) => {
-  let result = [];
-  result = await dal.update(req.params.id, req.body);
-  res.send(result);
-};
-
-exports.remove = async (req, res) => {
-  let result = [];
-  result = await dal.remove(req.params.id);
-  res.send(result);
-};
+  update = async (req, res) => {
+    console.log("updating a vendor");
+    let result = await this.repoManager.update(req.params.id, req.body);
+    res.send(result.data);
+  };
+}

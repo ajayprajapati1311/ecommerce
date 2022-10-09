@@ -1,37 +1,37 @@
-const dal = require("../model/products_dal");
+//Controller
+export default class ProductController {
+  //constructor Dependency Injection
+  constructor(mgr) {
+    this.repoManager = mgr;
+  }
 
+  get = async (req, res) => {
+    console.log("Fetching All Products");
+    let allProducts = await this.repoManager.getAll();
+    res.send(allProducts.data);
+  };
 
+  getById = async (req, res) => {
+    console.log("Fetching All Products By Id");
+    let product = await this.repoManager.getById(req.params.id);
+    res.send(product.data);
+  };
 
-exports.getAllProducts= async (req, res) => {
-  // let data = [];
-  let data = req.body;
-  data = await dal.getAllProducts(req.params.id);
-  res.send(data);
-};
-// exports.productPage = async (req, res) => {
-//   res.render("../views/products");
-// };
+  post = async (req, res) => {
+    console.log("Adding a Product");
+    let result = await this.repoManager.post(req);
+    res.send(result.data);
+  };
 
-exports.getById = async (req, res) => {
-  let data = [];
-  data = await dal.getProductById(req.params.id);
-  res.send(data);
-};
+  delete = async (req, res) => {
+    console.log("deleting a Product");
+    let result = await this.repoManager.delete(req.params.id);
+    res.send(result.data);
+  };
 
-exports.insert = async (req, res) => {
-  let result = [];
-  result = await dal.insert(req);
-  res.send(result);
-};
-
-exports.update = async (req, res) => {
-  let result = [];
-  result = await dal.update(req.params.id, req.body);
-  res.send(result);
-};
-
-exports.remove = async (req, res) => {
-  let result = [];
-  result = await dal.remove(req.params.id);
-  res.send(result);
-};
+  update = async (req, res) => {
+    console.log("updating a Product");
+    let result = await this.repoManager.update(req.params.id, req.body);
+    res.send(result.data);
+  };
+}
