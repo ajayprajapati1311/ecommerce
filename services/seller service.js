@@ -1,5 +1,5 @@
 import Seller from "../model/sellersmodel.js";
-import sql from "../model/db.js";
+import sql from "./db/db.js";
 
 export default class SellerService {
   //constructor Dependency Injection

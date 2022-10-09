@@ -1,5 +1,5 @@
 import User from "../model/usersmodel.js";
-import sql from "../model/db.js";
+import sql from "./db/db.js";
 import Customer from "../model/customermodel.js";
 import Seller from "../model/sellersmodel.js";
 import Vendor from "../model/vendormodel.js";
