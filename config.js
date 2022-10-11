@@ -1,3 +1,3 @@
-const jwtSecretKey = "ecom_secret";
+const jwtSecretKey = "ecommerce";
 
 export default { jwtSecretKey };
