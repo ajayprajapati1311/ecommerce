@@ -17,6 +17,12 @@ export default class DashboardController {
       res.send(result.data);
     };
   
+    getZeroAvailableProducts = async  (req,res) => {
+      console.log("Fetching Unavailable Products");
+      let result = await this.repoManager.getZeroAvailableProducts();
+      res.send(result.data);
+    };
+
     getCategoryList = async (req, res) => {
       console.log("Fetching Category List");
       let result = await this.repoManager.getCategoryList();
@@ -44,6 +50,20 @@ export default class DashboardController {
     getSellerProducts = async (req, res) => {
       console.log("Fetching Seller Profile");
       let result = await this.repoManager.getSellerProducts(req.params.id);
+      res.send(result.data);
+    };
+  
+    getProductsByCategoryName = async (req, res) => {
+      console.log("Fetching products based on category name");
+      let result = await this.repoManager.getProductsByCategoryName(req);
+      res.send(result.data);
+    };
+  
+    getCustomersOrdersByOrderId = async (req, res) => {
+      console.log("Fetching customer's orders based on order id");
+      let result = await this.repoManager.getCustomersOrdersByOrderId(
+        req.params.id
+      );
       res.send(result.data);
     };
   }
