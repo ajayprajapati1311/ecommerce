@@ -7,10 +7,13 @@ export default function (app) {
 
   //Map controller callback functions for rest API routes
   app.get("/api/orderlist", controller.getOrderList);
-  app.get("/api/getavailableproducts", controller.getAvailableProducts);
+  app.get("/api/availableproducts", controller.getAvailableProducts);
+  app.get("/api/unavailableproducts",controller.getZeroAvailableProducts);
   app.get("/api/categorylist", controller.getCategoryList);
-  app.get("/api/customerprofile", controller.getCustomerProfile);
-  app.get("/api/sellerprofile", controller.getSellerProfile);
-  app.get("/api/sellerprofile", controller.getSellerOrders);
-  app.get("/api/sellerprofile", controller.getSellerProducts);
+  app.get("/api/customerprofile/:id", controller.getCustomerProfile);
+  app.get("/api/sellerprofile/:id", controller.getSellerProfile);
+  app.get("/api/sellerorders/:id", controller.getSellerOrders);
+  app.get("/api/sellerproducts/:id", controller.getSellerProducts);
+  app.get("/api/products/categories/:name",controller.getProductsByCategoryName);
+  app.get("/api/customers/order/:id",controller.getCustomersOrdersByOrderId);
 }
