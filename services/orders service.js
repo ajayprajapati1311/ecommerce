@@ -1,6 +1,7 @@
 import Orders from "../model/ordersmodel.js";
 import Ordersdata from "../model/ordersdatamodel.js";
 import Payments from "../model/paymentsmodel.js";
+import Product from "../model/productsmodel";
 import sql from "./db/db.js";
 
 export default class OrdersService {
@@ -9,6 +10,7 @@ export default class OrdersService {
     this.orderModel = new Orders();
     this.ordersdataModel = new Ordersdata();
     this.paymentsModel = new Payments();
+    this.productModel = new Product();
   }
 
   getAll = () => {
@@ -16,7 +18,7 @@ export default class OrdersService {
       let command = `SELECT * FROM ${this.orderModel.table_name};`;
       sql.query(command, (err, rows, field) => {
         if (err) {
-          resolve({ error: "Unable to fetch orders." });
+          throw err;
         } else {
           resolve({ data: rows });
         }
@@ -29,7 +31,7 @@ export default class OrdersService {
       let command = `SELECT * FROM ${this.orderModel.table_name} WHERE id="${id}"`;
       sql.query(command, (err, rows, fields) => {
         if (err) {
-          resolve({ error: "Unable to fetch orders by id." });
+          throw err;
         }
         resolve({ data: rows });
       });
@@ -40,9 +42,9 @@ export default class OrdersService {
     return new Promise((resolve) => {
       let data = req.body;
       let timeStamp = new Date().toISOString().slice(0, 19).replace("T", " ");
-      let dataQuery = "";
+      let orderDataValues = "";
+      let productQuantityUpdateQuery = "";
       let amount = 0;
-
       for (let i = 0; i < data.products.length; i++) {
         let productId = data.products[i].id;
         let productPrice = data.products[i].price;
@@ -50,19 +52,20 @@ export default class OrdersService {
 
         amount += productPrice * productQuantity;
 
-        dataQuery += `(@order_id, ${productId}, ${productPrice}, ${productQuantity},"${timeStamp}", "${timeStamp}"),`;
+        orderDataValues += `(@order_id, ${productId}, ${productPrice}, ${productQuantity},"${timeStamp}", "${timeStamp}"),`;
+        productQuantityUpdateQuery += `UPDATE ${this.productModel.table_name} SET quantity = quantity - ${productQuantity} WHERE id = ${productId};`;
       }
-      dataQuery = dataQuery.slice(0, -1);
-
-      let command = `INSERT INTO ${this.orderModel.table_name} (status, customer_id, created_at, modified_at) VALUES ("${data.status}", ${data.customer_id}, "${timeStamp}", "${timeStamp}");
+      orderDataValues = orderDataValues.slice(0, -1);
+      let payableAmount = amount * (1 - data.discount_percentage);
+      let command = `INSERT INTO ${this.orderModel.table_name} (status, customer_id, created_at, modified_at) VALUES ("placed", ${data.customer_id}, "${timeStamp}", "${timeStamp}");
       SET @order_id = LAST_INSERT_ID();
-      INSERT INTO ${this.ordersdataModel.table_name} (order_id, product_id, price, quantity, created_at, modified_at) VALUES ${dataQuery};
-      INSERT INTO ${this.paymentsModel.table_name} (amount, mode_of_payment, order_id, created_at, modified_at) VALUES (${amount}, "${data.payment_mode}", @order_id, "${timeStamp}", "${timeStamp}");`;
+      INSERT INTO ${this.ordersdataModel.table_name} (order_id, product_id, price, quantity, created_at, modified_at) VALUES ${orderDataValues};
+      ${productQuantityUpdateQuery}
+      INSERT INTO ${this.paymentsModel.table_name} (total_amount, discount_percentage,payable_amount,mode_of_payment, order_id, created_at, modified_at) VALUES (${amount}, ${data.discount_percentage} ,${payableAmount}, "${data.payment_mode}", @order_id, "${timeStamp}", "${timeStamp}");`;
 
       sql.query(command, (err, rows, fields) => {
         if (err) {
-          console.log(err);
-          resolve({ error: "Unable to place order." });
+          throw err;
         } else {
           resolve({ message: "Inserted!" });
         }
@@ -75,8 +78,7 @@ export default class OrdersService {
       let command = `DELETE FROM ${this.orderModel.table_name} Where id="${id}"`;
       sql.query(command, (err, rows, fields) => {
         if (err) {
-          console.log(err);
-          resolve({ error: "Unable to delete a order." });
+          throw err;
         } else {
           resolve({ data: rows });
         }
@@ -90,8 +92,7 @@ export default class OrdersService {
       let command = `UPDATE ${this.orderModel.table_name} SET quantity="${data.quantity}", modified_at="${timeStamp}" WHERE id="${id}"`;
       sql.query(command, (err, rows, fields) => {
         if (err) {
-          onsole.log(err);
-          resolve({ error: "Unable to update a order." });
+          throw err;
         } else {
           resolve({ data: rows });
         }
