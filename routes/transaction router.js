@@ -1,4 +1,4 @@
-import TransactionController from "../controllers/transaction controller";
+import TransactionController from "../controllers/transaction Controller";
 import TransactionService from "../services/transaction service.js";
 
 export default function (app) {
