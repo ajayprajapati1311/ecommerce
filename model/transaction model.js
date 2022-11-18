@@ -1,6 +1,6 @@
 export default class Transactions {
     //Parameterized constructor
-    constructor(id, from_account, to_account, amount, created_at) {
+    constructor(id, from_account, to_account, amoun, created_at) {
       this.id = id;
       this.from_account = from_account;
       this.to_account = to_account;
